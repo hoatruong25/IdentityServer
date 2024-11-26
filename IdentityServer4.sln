@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{2367FD5A-4670-4104-B70B-A347EF5F3811}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB3E0BF2-23B1-4E33-B423-BDC0B798EBDC}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{D229F68F-3827-456F-B3B5-CE73717D4BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMVC", "WeatherMVC\WeatherMVC.csproj", "{6E205A8E-1B25-47C5-9948-94ACBE765127}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2367FD5A-4670-4104-B70B-A347EF5F3811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2367FD5A-4670-4104-B70B-A347EF5F3811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2367FD5A-4670-4104-B70B-A347EF5F3811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2367FD5A-4670-4104-B70B-A347EF5F3811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D229F68F-3827-456F-B3B5-CE73717D4BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D229F68F-3827-456F-B3B5-CE73717D4BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D229F68F-3827-456F-B3B5-CE73717D4BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D229F68F-3827-456F-B3B5-CE73717D4BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E205A8E-1B25-47C5-9948-94ACBE765127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E205A8E-1B25-47C5-9948-94ACBE765127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E205A8E-1B25-47C5-9948-94ACBE765127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E205A8E-1B25-47C5-9948-94ACBE765127}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B394057-2226-4324-9ECD-1EC43099744F}
+	EndGlobalSection
+EndGlobal
