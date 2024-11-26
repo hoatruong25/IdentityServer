@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WeatherMVC.Models;
@@ -23,13 +25,16 @@ public class HomeController : Controller
         return View();
     }
     
+    [Authorize]
     public async Task<IActionResult> Weather()
     {
         using var client = new HttpClient();
 
-        var token = await _tokenService.GetToken("CoffeeAPI.read");
+        // var token = await _tokenService.GetToken("CoffeeAPI.read");
+        // if (token.AccessToken != null) client.SetBearerToken(token.AccessToken);
 
-        if (token.AccessToken != null) client.SetBearerToken(token.AccessToken);
+        var token = await HttpContext.GetTokenAsync("access_token");
+        if (token != null) client.SetBearerToken(token);
 
         var result = await client.GetAsync("https://localhost:7295/WeatherForecast");
 

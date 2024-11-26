@@ -24,10 +24,9 @@ if (seed)
 
 // Add services to the container.
 // Add DbContext
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseNpgsql(defaultConnectionString, opt => opt.MigrationsAssembly(assembly));
-});
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => { options.UseNpgsql(defaultConnectionString, opt => opt.MigrationsAssembly(assembly)); }
+);
 
 // Add AspNet Core Identity
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -37,20 +36,24 @@ builder.Services.AddIdentityServer()
     // Add IdentityServer with AspNetIdentity
     .AddAspNetIdentity<IdentityUser>()
     // Store configuration and operational data in PostgreSQL
-    .AddConfigurationStore(options =>
-    {
-        options.ConfigureDbContext = b =>
-        {
-            b.UseNpgsql(defaultConnectionString, opt => opt.MigrationsAssembly(assembly));
-        };
-    })
-    .AddOperationalStore(options =>
+    .AddConfigurationStore(
+        options =>
         {
             options.ConfigureDbContext = b =>
             {
                 b.UseNpgsql(defaultConnectionString, opt => opt.MigrationsAssembly(assembly));
             };
-        })
+        }
+    )
+    .AddOperationalStore(
+        options =>
+        {
+            options.ConfigureDbContext = b =>
+            {
+                b.UseNpgsql(defaultConnectionString, opt => opt.MigrationsAssembly(assembly));
+            };
+        }
+    )
     .AddDeveloperSigningCredential();
 
 builder.Services.AddRazorPages();
@@ -60,11 +63,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
-app.UseEndpoints(
-    endpoints =>
-    {
-        endpoints.MapRazorPages();
-    }
-);
+app.MapRazorPages().RequireAuthorization();
 
 app.Run();

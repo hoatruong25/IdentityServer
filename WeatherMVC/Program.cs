@@ -11,6 +11,29 @@ builder.Services.AddSingleton<ITokenService, TokenService>();
 // Add Options
 builder.Services.Configure<IdentityServerSettings>(builder.Configuration.GetSection("IdentityServerSettings"));
 
+// Add Auth Config
+builder.Services.AddAuthentication(
+        options =>
+        {
+            options.DefaultScheme = "cookie";
+            options.DefaultChallengeScheme = "oidc";
+        }
+    ).AddCookie("cookie")
+    .AddOpenIdConnect(
+        "oidc", options =>
+        {
+            options.Authority = builder.Configuration["InteractiveServerSettings:DiscoveryUrl"];
+            options.ClientId = builder.Configuration["InteractiveServerSettings:ClientId"];
+            options.ClientSecret = builder.Configuration["InteractiveServerSettings:ClientSecret"];
+            options.Scope.Add(builder.Configuration["InteractiveServerSettings:Scope:0"]);
+
+            options.ResponseType = "code";
+            options.UsePkce = true;
+            options.ResponseMode = "query";
+            options.SaveTokens = true;
+        }
+    );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +49,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
